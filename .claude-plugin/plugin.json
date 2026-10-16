@@ -1,0 +1,104 @@
+{
+  "name": "mcp-atlassian",
+  "displayName": "MCP Atlassian",
+  "version": "1.0.0",
+  "description": "For Jira and Confluence Data Center: MCP servers that read, search, create, edit and plan on your self-hosted Atlassian, with each tier of tools set to on, ask or off, and the token sent only to your own host.",
+  "author": {
+    "name": "Jan Kolenko",
+    "url": "https://github.com/JanKolenko-git"
+  },
+  "homepage": "https://github.com/JanKolenko-git/mcp-atlassian",
+  "repository": "https://github.com/JanKolenko-git/mcp-atlassian",
+  "license": "MIT",
+  "keywords": ["mcp", "jira", "confluence", "atlassian", "data-center"],
+  "userConfig": {
+    "jira_url": {
+      "type": "string",
+      "title": "Jira URL",
+      "description": "Your Jira Data Center address, such as https://jira.example.com"
+    },
+    "jira_token": {
+      "type": "string",
+      "title": "Jira personal access token",
+      "description": "In Jira: profile menu, Personal Access Tokens",
+      "sensitive": true
+    },
+    "jira_read": {
+      "type": "string",
+      "title": "Jira: read tools",
+      "description": "Get, search, list and preview tools. on runs them as your Claude Code permissions allow, ask prompts on every call, off leaves them out.",
+      "options": ["on", "ask", "off"],
+      "default": "on"
+    },
+    "jira_write": {
+      "type": "string",
+      "title": "Jira: write tools",
+      "description": "Create, edit, comment, transition, link, attach and move tools. on runs them as your Claude Code permissions allow, ask prompts on every call, off leaves them out.",
+      "options": ["on", "ask", "off"],
+      "default": "on"
+    },
+    "jira_delete": {
+      "type": "string",
+      "title": "Jira: delete tools",
+      "description": "Delete and unlink tools. on runs them as your Claude Code permissions allow, ask prompts on every call, off leaves them out.",
+      "options": ["on", "ask", "off"],
+      "default": "ask"
+    },
+    "confluence_url": {
+      "type": "string",
+      "title": "Confluence URL",
+      "description": "Your Confluence Data Center address, such as https://confluence.example.com"
+    },
+    "confluence_token": {
+      "type": "string",
+      "title": "Confluence personal access token",
+      "description": "In Confluence: profile menu, Personal Access Tokens",
+      "sensitive": true
+    },
+    "confluence_read": {
+      "type": "string",
+      "title": "Confluence: read tools",
+      "description": "Get, search, list and preview tools. on runs them as your Claude Code permissions allow, ask prompts on every call, off leaves them out.",
+      "options": ["on", "ask", "off"],
+      "default": "on"
+    },
+    "confluence_write": {
+      "type": "string",
+      "title": "Confluence: write tools",
+      "description": "Create, edit, comment, transition, link, attach and move tools. on runs them as your Claude Code permissions allow, ask prompts on every call, off leaves them out.",
+      "options": ["on", "ask", "off"],
+      "default": "on"
+    },
+    "confluence_delete": {
+      "type": "string",
+      "title": "Confluence: delete tools",
+      "description": "Delete and unlink tools. on runs them as your Claude Code permissions allow, ask prompts on every call, off leaves them out.",
+      "options": ["on", "ask", "off"],
+      "default": "ask"
+    }
+  },
+  "mcpServers": {
+    "Jira": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/jira/server.ts"],
+      "env": {
+        "JIRA_URL": "${user_config.jira_url}",
+        "JIRA_PERSONAL_TOKEN": "${user_config.jira_token}",
+        "JIRA_READ": "${user_config.jira_read}",
+        "JIRA_WRITE": "${user_config.jira_write}",
+        "JIRA_DELETE": "${user_config.jira_delete}"
+      }
+    },
+    "Confluence": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/confluence/server.ts"],
+      "env": {
+        "CONFLUENCE_URL": "${user_config.confluence_url}",
+        "CONFLUENCE_PERSONAL_TOKEN": "${user_config.confluence_token}",
+        "CONFLUENCE_READ": "${user_config.confluence_read}",
+        "CONFLUENCE_WRITE": "${user_config.confluence_write}",
+        "CONFLUENCE_DELETE": "${user_config.confluence_delete}"
+      }
+    }
+  }
+}

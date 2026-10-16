@@ -1,0 +1,17 @@
+{
+  "name": "jankolenko",
+  "owner": {
+    "name": "Jan Kolenko",
+    "url": "https://github.com/JanKolenko-git"
+  },
+  "description": "Jan Kolenko's Claude Code plugins.",
+  "plugins": [
+    {
+      "name": "mcp-atlassian",
+      "source": "./",
+      "description": "MCP servers for Jira and Confluence Data Center, the self-hosted Atlassian products.",
+      "category": "productivity",
+      "keywords": ["mcp", "jira", "confluence", "atlassian", "data-center"]
+    }
+  ]
+}
