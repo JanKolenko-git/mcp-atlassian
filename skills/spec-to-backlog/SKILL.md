@@ -1,6 +1,9 @@
 ---
 name: spec-to-backlog
-description: Turn a Confluence spec or requirements page into a Jira epic and stories, linked back to the page. Use for "break this spec into tickets", "create the backlog for this page", or "make stories from this document".
+description:
+  Turn a Confluence spec or requirements page into a Jira epic and stories, linked back to the page.
+  Use for "break this spec into tickets", "create the backlog for this page", or "make stories from
+  this document".
 ---
 
 # From a Confluence spec to a Jira backlog

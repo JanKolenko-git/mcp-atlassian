@@ -1,15 +1,18 @@
 ---
 name: status-report
-description: Write a status report for a Jira project, sprint or filter and, on request, publish it to a Confluence page section. Use for "status update", "sprint summary", "what changed this week", or a recurring report page.
+description:
+  Write a status report for a Jira project, sprint or filter and, on request, publish it to a
+  Confluence page section. Use for "status update", "sprint summary", "what changed this week", or a
+  recurring report page.
 ---
 
 # Status report from Jira, published to Confluence
 
 ## 1. Scope
 
-Settle three things with the user, or take them from the request: the scope (a project key, a sprint,
-or a JQL filter), the period (default: the last 7 days), and where the report goes (chat only, or a
-Confluence page).
+Settle three things with the user, or take them from the request: the scope (a project key, a
+sprint, or a JQL filter), the period (default: the last 7 days), and where the report goes (chat
+only, or a Confluence page).
 
 ## 2. Gather
 
@@ -37,7 +40,8 @@ Numbers belong in a short table; keep them out of the prose.
 
 ## 4. Publish, only on the user's word
 
-To a Confluence page, use the marker-delimited section so later reports replace only their own block:
+To a Confluence page, use the marker-delimited section so later reports replace only their own
+block:
 
 1. `preview_section_update` with `page`, `marker: "status-report:<SCOPE>"`,
    `heading: "Status report"`, `content` in Markdown with `format: markdown`.

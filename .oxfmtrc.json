@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 160,
+  "semi": false,
+  "singleQuote": false,
+  "sortImports": true,
+  "overrides": [
+    {
+      "files": ["**/*.md"],
+      "options": { "printWidth": 100, "proseWrap": "always" }
+    }
+  ]
+}

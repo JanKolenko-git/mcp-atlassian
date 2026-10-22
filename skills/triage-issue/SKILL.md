@@ -1,6 +1,9 @@
 ---
 name: triage-issue
-description: Decide whether a bug report, error message or stack trace duplicates an existing Jira ticket, then comment on that ticket or create a new one. Use when the user pastes an error, describes a bug, or asks "is this known?".
+description:
+  Decide whether a bug report, error message or stack trace duplicates an existing Jira ticket, then
+  comment on that ticket or create a new one. Use when the user pastes an error, describes a bug, or
+  asks "is this known?".
 ---
 
 # Triage an issue against Jira
@@ -10,8 +13,8 @@ The jira MCP server's tools do the lookups. Nothing is written until the user sa
 ## 1. Pull out the signature
 
 From the report, note the error text or exception name, the component or service, the environment
-(prod, staging, a version), and the symptom in the user's words. Strip identifiers that vary per run:
-ids, timestamps, hostnames.
+(prod, staging, a version), and the symptom in the user's words. Strip identifiers that vary per
+run: ids, timestamps, hostnames.
 
 ## 2. Search for duplicates
 
@@ -46,6 +49,7 @@ Report the key and link, and what happens next: who to assign, or a transition t
 
 - Several plausible duplicates: list them all; never comment on more than one.
 - No project named and the search spans several: ask which project owns the component.
-- Too little detail to search: ask for the error text or a screenshot, then `get_attachment` reads it.
-- A resolved match with a fix version: say so, and ask whether this is a regression worth a new ticket
-  linked with the Relates type.
+- Too little detail to search: ask for the error text or a screenshot, then `get_attachment` reads
+  it.
+- A resolved match with a fix version: say so, and ask whether this is a regression worth a new
+  ticket linked with the Relates type.

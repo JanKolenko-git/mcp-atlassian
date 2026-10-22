@@ -1,7 +1,7 @@
 {
   "name": "mcp-atlassian",
   "displayName": "MCP Atlassian",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "For Jira and Confluence Data Center: MCP servers that read, search, create, edit and plan on your self-hosted Atlassian, with each tier of tools set to on, ask or off, and the token sent only to your own host.",
   "author": {
     "name": "Jan Kolenko",
@@ -80,7 +80,7 @@
   "mcpServers": {
     "Jira": {
       "command": "node",
-      "args": ["${CLAUDE_PLUGIN_ROOT}/jira/server.ts"],
+      "args": ["${CLAUDE_PLUGIN_ROOT}/connectors/jira/server.ts"],
       "env": {
         "JIRA_URL": "${user_config.jira_url}",
         "JIRA_PERSONAL_TOKEN": "${user_config.jira_token}",
@@ -91,7 +91,7 @@
     },
     "Confluence": {
       "command": "node",
-      "args": ["${CLAUDE_PLUGIN_ROOT}/confluence/server.ts"],
+      "args": ["${CLAUDE_PLUGIN_ROOT}/connectors/confluence/server.ts"],
       "env": {
         "CONFLUENCE_URL": "${user_config.confluence_url}",
         "CONFLUENCE_PERSONAL_TOKEN": "${user_config.confluence_token}",

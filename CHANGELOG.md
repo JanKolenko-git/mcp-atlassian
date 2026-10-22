@@ -1,5 +1,39 @@
 # Changelog
 
+## 1.1.0 — 2026-10-22
+
+Eight new tools and one new option, all on endpoints Server / Data Center has. 41 Jira tools and 29
+Confluence tools.
+
+### Jira
+
+- `get_development_info` (read): the pull requests, branches and commits a repository integration
+  (Bitbucket, GitHub, GitLab) links to a ticket, from the endpoint behind the Development panel.
+
+### Confluence
+
+- `get_restrictions` (read) and `set_restrictions` (write): who may view and who may edit a page.
+  `set_restrictions` replaces the operations passed and keeps the token's user on an edit
+  restriction.
+- `list_templates`, `get_template` (read) and `create_page_from_template` (write): page templates by
+  space or global, their variables, and a page made from one with the variables filled.
+- `search_users` (read): Confluence users by part of a name or exact username.
+- `copy_page` (write): a page with its labels and attachments, next to the original or under a
+  parent or into a space; on a Server without the copy endpoint the body and labels are copied as a
+  new page.
+- `add_comment` takes `anchor` (and `occurrence`) to post an inline comment on text of the page.
+
+### Plugin
+
+- The Jira and Confluence servers moved from `jira/` and `confluence/` to `connectors/jira/` and
+  `connectors/confluence/`, and `shared/` to `connectors/shared/`. Other MCP clients that point at
+  `server.ts` by path need the new path; the plugin manifest is updated.
+- `setup.sh` and its `curl | bash` install are gone. The README installs the plugin with the Claude
+  Code commands (`claude plugin marketplace add`, `claude plugin install`) from a clone or from
+  GitHub, and sets URLs and tokens under `/plugin` → **Configure options**.
+- Oxlint and Oxfmt lint and format the sources: `npm run check` runs them with `tsc` and the tests,
+  `npm run fix` applies them. Formatted at 160 columns; no behaviour changes.
+
 ## 1.0.0 — 2026-10-16
 
 First release of `mcp-atlassian`, a Claude Code plugin with MCP servers for Jira and Confluence
@@ -12,19 +46,17 @@ Server or Data Center. Install with `claude plugin install mcp-atlassian@jankole
   `list_fields`, `search_users`, `whoami`, `list_boards`, `list_sprints`, `get_sprint_issues`,
   `list_epics`, `jira_get`.
 - Writes: `create_issue`, `create_issues`, `edit_issue`, `transition_issue`, `add_comment`,
-  `edit_comment`, `add_worklog`, `add_attachment`, `watch_issue`, `link_issues`,
-  `add_remote_link`, `move_issues`, `rank_issue`, `create_sprint`, `update_sprint`,
-  `create_version`, `update_version`.
-- Deletes: `delete_issue`, `delete_comment`, `delete_worklog`, `delete_attachment`,
-  `unlink_issues`.
+  `edit_comment`, `add_worklog`, `add_attachment`, `watch_issue`, `link_issues`, `add_remote_link`,
+  `move_issues`, `rank_issue`, `create_sprint`, `update_sprint`, `create_version`, `update_version`.
+- Deletes: `delete_issue`, `delete_comment`, `delete_worklog`, `delete_attachment`, `unlink_issues`.
 
 ### Confluence (22 tools)
 
-- Reads: `get_page`, `search_pages`, `get_attachment`, `list_spaces`, `list_pages`,
-  `get_children`, `get_page_history`, `get_comments`, `preview_page_update`,
-  `preview_section_update`, `whoami`, `confluence_get`.
-- Writes: `create_page`, `update_page`, `update_section`, `move_page`, `add_comment`,
-  `set_labels`, `add_attachment`.
+- Reads: `get_page`, `search_pages`, `get_attachment`, `list_spaces`, `list_pages`, `get_children`,
+  `get_page_history`, `get_comments`, `preview_page_update`, `preview_section_update`, `whoami`,
+  `confluence_get`.
+- Writes: `create_page`, `update_page`, `update_section`, `move_page`, `add_comment`, `set_labels`,
+  `add_attachment`.
 - Deletes: `delete_page`, `delete_comment`, `delete_attachment`.
 
 ### Plugin
